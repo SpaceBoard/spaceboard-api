@@ -77,6 +77,7 @@ exports = module.exports = function(){
 		})
 		socket.on('up/space@attention', function (data) {
 			console.log(data)
+			inmem.onAttention({ data })
 			socket.broadcast.to(data.spaceID || 'spaceboard').emit('dn/space@attention', data);
 		})
 		//

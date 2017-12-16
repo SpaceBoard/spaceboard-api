@@ -8,6 +8,7 @@ var rootStore = {
   'demo': ans
 }
 
+
 exports.writeFile = ({ spaceID, fileID, fileData }) => {
   imgStore[spaceID][fileID] = fileData
   // console.log(imgStore);
@@ -18,6 +19,14 @@ exports.readFile = ({ spaceID, fileID }) => {
 
 exports.readRoot = ({ spaceID }) => {
   return rootStore[spaceID]
+}
+
+exports.attention = ({ root, spaceID, attention }) => {
+  if (root.realtime.id === spaceID) {
+    root.realtime.attention.x = attention.x
+    root.realtime.attention.y = attention.y
+    root.realtime.attention.scaler = attention.scaler
+  }
 }
 
 exports.add = ({ data, root }) =>  {
@@ -59,4 +68,8 @@ exports.onRemove = ({ data }) => {
 
 exports.onUpdate = ({ data }) => {
   exports.update({ data, root: exports.readRoot({ spaceID: 'demo' }) })
+}
+
+exports.onAttention = ({ data }) => {
+  exports.attention({ attention: data.attention, spaceID: data.spaceID, root: exports.readRoot({ spaceID: 'demo' }) })
 }
