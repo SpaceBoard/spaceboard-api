@@ -43,12 +43,10 @@ exports = module.exports = function(app) {
 
     app.all('/*', function(req, res, next){
     	if (process.env.NODE_ENV === 'production'){
-			if (req.headers.origin === 'https://wonglok.com'){
-				res.setHeader('Access-Control-Allow-Origin', 'https://wonglok.com');
-			} else if (req.headers.origin === 'https://vue-lok-lok-academy.herokuapp.com') {
-				res.setHeader('Access-Control-Allow-Origin', 'https://vue-lok-lok-academy.herokuapp.com');
+			if (req.headers.origin === 'https://spaceboard-gui.firebaseapp.com'){
+				res.setHeader('Access-Control-Allow-Origin', 'https://spaceboard-gui.firebaseapp.com');
 			} else {
-				res.setHeader('Access-Control-Allow-Origin', 'https://wonglok.com');
+				res.setHeader('Access-Control-Allow-Origin', 'https://spaceboard-gui.firebaseapp.com');
 			}
 		}else{
 			res.setHeader('Access-Control-Allow-Origin', '*');

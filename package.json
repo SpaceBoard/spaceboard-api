@@ -11,7 +11,9 @@
     "socket.io": "^2.0.1"
   },
   "scripts": {
-    "deploy": "git add .; git commit -am \"deploy\"; git push heroku master;",
+    "deploy": "npm run backup; npm run deploy-heroku;",
+    "backup": "git add .; git commit -a -m \"backup on `date +'%Y-%m-%d %H:%M:%S'`\"; git push origin master;",
+    "deploy-heroku": "git add .; git commit -am \"deploy\"; git push heroku master;",
     "dev": "nodemon -w server app.js",
     "start": "node app.js"
   },
